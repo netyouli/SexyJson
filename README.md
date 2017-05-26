@@ -1,5 +1,4 @@
 # SexyJson
-==============
 
 ![Build Status](https://api.travis-ci.org/netyouli/WHC_Layout.svg?branch=master)
 [![Pod Version](http://img.shields.io/cocoapods/v/WHC_Layout.svg?style=flat)](http://cocoadocs.org/docsets/WHC_Layout/)
@@ -8,7 +7,7 @@
 
 SexyJson is Swift3.+ json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
 
-Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)  
+**Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)  
 
 Note
 ==============
