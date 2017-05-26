@@ -5,6 +5,7 @@
 //  Created by WHC on 17/5/5.
 //  Copyright © 2017年 WHC. All rights reserved.
 //
+//  Github <https://github.com/netyouli/SexyJson>
 
 import UIKit
 
