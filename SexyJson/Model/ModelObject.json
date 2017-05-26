@@ -1,0 +1,65 @@
+{
+    "age" : 25,
+    "enmuStr" : "Work",
+    "url" : "https:\/\/www.baidu.com",
+    "subArray" : [
+                  {
+                  "test3" : "test3",
+                  "test2" : "test2",
+                  "cls" : {
+                  "age" : 10,
+                  "name" : "swift"
+                  },
+                  "test1" : "test1"
+                  },
+                  {
+                  "test3" : "test3",
+                  "test2" : "test2",
+                  "cls" : {
+                  "age" : 10,
+                  "name" : "swift"
+                  },
+                  "test1" : "test1"
+                  }
+                  ],
+    "color" : "0xffbbaa",
+    "nestArray" : [
+                   [
+                    {
+                    "test" : "test1"
+                    },
+                    {
+                    "test" : "test2"
+                    }
+                    ],
+                   [
+                    {
+                    "test" : "test3"
+                    },
+                    {
+                    "test" : "test4"
+                    }
+                    ]
+                   ],
+    "enmuInt" : 10,
+    "sub" : {
+        "test1" : "test1",
+        "test2" : "test2",
+        "test3" : "test3"
+    },
+    "height" : 175,
+    "intArray" : [
+                  1,
+                  2,
+                  3,
+                  4
+                  ],
+    "name" : "吴海超",
+    "learn" : [
+               "iOS",
+               "android",
+               "js",
+               "nodejs",
+               "python"
+               ]
+}

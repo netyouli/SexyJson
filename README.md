@@ -1,0 +1,138 @@
+# SexyJson
+<div align=center><img src="https://github.com/netyouli/WHC_AutoLayoutKit/blob/master/Gif/WHC_AutoLayoutLogo.png" width = "319.5" height = "129"/></div></br>
+
+![Build Status](https://api.travis-ci.org/netyouli/WHC_Layout.svg?branch=master)
+[![Pod Version](http://img.shields.io/cocoapods/v/WHC_Layout.svg?style=flat)](http://cocoadocs.org/docsets/WHC_Layout/)
+[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/SnapKit/SnapKit)
+[![Pod License](http://img.shields.io/cocoapods/l/WHC_Layout.svg?style=flat)](https://opensource.org/licenses/MIT)
+
+**Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)
+
+Introduce
+==============
+-  SexyJson is Swift3.+ json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
+
+Note
+==============
+- The definition of model must implement SexyJson agreement
+- If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType agreement
+- To KVC model must inherit NSObject and NSCoding protocol implementation
+
+Require
+==============
+* iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
+* Xcode 8.0 or later
+* Swift 3.0+
+
+Install
+==============
+* CocoaPods: pod 'SexyJson'
+
+Model
+==============
+This is an example of json:
+```swift
+let json = "{\"age\":25,\"enmuStr\":\"Work\",\"url\":\"https:\\/\\/www.baidu.com\",\"subArray\":[{\"test3\":\"test3\",\"test2\":\"test2\",\"cls\":{\"age\":10,\"name\":\"swift\"},\"test1\":\"test1\"},{\"test3\":\"test3\",\"test2\":\"test2\",\"cls\":{\"age\":10,\"name\":\"swift\"},\"test1\":\"test1\"}],\"color\":\"0xffbbaa\",\"nestArray\":[[{\"test\":\"test1\"},{\"test\":\"test2\"}],[{\"test\":\"test3\"},{\"test\":\"test4\"}]],\"enmuInt\":10,\"sub\":{\"test1\":\"test1\",\"test2\":\"test2\",\"test3\":\"test3\"},\"height\":175,\"intArray\":[1,2,3,4],\"name\":\"吴海超\",\"learn\":[\"iOS\",\"android\",\"js\",\"nodejs\",\"python\"]}"
+```
+The model class:
+```swift
+enum WorkEnum: String,SexyJsonEnumType {
+    case null = "nil"
+    case one = "Work"
+    case two = "Not Work"
+}
+
+enum IntEnum: Int,SexyJsonEnumType {
+    case zero = 0
+    case hao = 10
+    case xxx = 20
+}
+
+struct Model :SexyJson {
+
+    var age: Int = 0
+    var enmuStr: WorkEnum!
+    var url: URL!
+    var subArray: [SubArray]!
+    var color: UIColor!
+    var nestArray: [[NestArray]]?
+    var enmuInt: IntEnum = .xxx
+    var sub: Sub!
+    var height: Int = 0
+    var intArray: [Int]!
+    var name: String!
+    var learn: [String]!
+
+    /// 映射
+    public mutating func sexyMap(_ map: [String : Any]) {
+        age            <<<        map["age"]
+        enmuStr        <<<        map["enmuStr"]
+        url            <<<        map["url"]
+        subArray       <<<        map["subArray"]
+        color          <<<        map["color"]
+        nestArray      <<<        map["nestArray"]
+        enmuInt        <<<        map["enmuInt"]
+        sub            <<<        map["sub"]
+        height         <<<        map["height"]
+        intArray       <<<        map["intArray"]
+        name           <<<        map["name"]
+        learn          <<<        map["learn"]
+    }
+}
+
+```
+
+Usage
+==============
+
+## Json->Model
+```swift
+let model = Model.sexy_json(json)
+```
+
+## Model->Dictionary
+```swift
+let dictionary = model.sexy_dictionary()
+```
+
+## Model->Json
+```swift
+let jsonStr = model.sexy_json()
+```
+
+## Json keyPath Parser
+```swift
+let subArrayModel = SubArray.sexy_json(json, keyPath: "subArray[0]")
+let subNestArray = NestArray.sexy_json(json, keyPath: "nestArray[0][0]")
+let test = String.sexy_json(json, keyPath: "nestArray[0][0].test")
+```
+
+## Json->[Model]
+```swift
+let arrayModel = [Model].sexy_json(json)
+```
+
+## [Model]->Array
+```swift
+let array = arrayModel.sexy_array()
+```
+
+## [Model]->Json
+```swift
+let arrayJson = arrayModel.sexy_json()
+```
+## Model kvc
+```swift
+let sub = Sub.sexy_json(json, keyPath: "sub")
+let subData = NSKeyedArchiver.archivedData(withRootObject: sub!)
+let subCoding = NSKeyedUnarchiver.unarchiveObject(with: subData) as? Sub
+let subPy = subCoding?.copy() as? Sub
+```
+Prompt
+==============
+If you want to view the analytical results, please download this demo to check the specific usage
+
+Licenses
+==============
+All source code is licensed under the MIT License.
+
