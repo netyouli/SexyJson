@@ -32,7 +32,14 @@ Model
 ==============
 This is an example of json:
 ```swift
-let json = "{\"age\":25,\"enmuStr\":\"Work\",\"url\":\"https:\\/\\/www.baidu.com\",\"subArray\":[{\"test3\":\"test3\",\"test2\":\"test2\",\"cls\":{\"age\":10,\"name\":\"swift\"},\"test1\":\"test1\"},{\"test3\":\"test3\",\"test2\":\"test2\",\"cls\":{\"age\":10,\"name\":\"swift\"},\"test1\":\"test1\"}],\"color\":\"0xffbbaa\",\"nestArray\":[[{\"test\":\"test1\"},{\"test\":\"test2\"}],[{\"test\":\"test3\"},{\"test\":\"test4\"}]],\"enmuInt\":10,\"sub\":{\"test1\":\"test1\",\"test2\":\"test2\",\"test3\":\"test3\"},\"height\":175,\"intArray\":[1,2,3,4],\"name\":\"吴海超\",\"learn\":[\"iOS\",\"android\",\"js\",\"nodejs\",\"python\"]}"
+let json = "{\"age\":25,\"enmuStr\":\"Work\",\"url\":\"https:\\/\\/www.baidu.com\",
+            \"subArray\":[{\"test3\":\"test3\",\"test2\":\"test2\",\"cls\":{\"age\":10,
+            \"name\":\"swift\"},\"test1\":\"test1\"},{\"test3\":\"test3\",\"test2\":\"test2\",
+            \"cls\":{\"age\":10,\"name\":\"swift\"},\"test1\":\"test1\"}],\"color\":\"0xffbbaa\",
+            \"nestArray\":[[{\"test\":\"test1\"},{\"test\":\"test2\"}],[{\"test\":\"test3\"},
+            {\"test\":\"test4\"}]],\"enmuInt\":10,\"sub\":{\"test1\":\"test1\",\"test2\":\"test2\",
+            \"test3\":\"test3\"},\"height\":175,\"intArray\":[1,2,3,4],\"name\":\"吴海超\",
+            \"learn\":[\"iOS\",\"android\",\"js\",\"nodejs\",\"python\"]}"
 ```
 The model class:
 ```swift
@@ -63,7 +70,7 @@ struct Model :SexyJson {
     var name: String!
     var learn: [String]!
 
-    /// 映射
+    /// Model mapping
     public mutating func sexyMap(_ map: [String : Any]) {
         age            <<<        map["age"]
         enmuStr        <<<        map["enmuStr"]
@@ -85,43 +92,43 @@ struct Model :SexyJson {
 Usage
 ==============
 
-## Json->Model
+Json is converted into a model object(json -> model)
 ```swift
 let model = Model.sexy_json(json)
 ```
 
-## Model->Dictionary
+Model object converted into the dictionary(model -> dictionary)
 ```swift
 let dictionary = model.sexy_dictionary()
 ```
 
-## Model->Json
+Model object converted into the json string(model -> json)
 ```swift
 let jsonStr = model.sexy_json()
 ```
 
-## Json keyPath Parser
+SexyJson support json parse the key path
 ```swift
 let subArrayModel = SubArray.sexy_json(json, keyPath: "subArray[0]")
 let subNestArray = NestArray.sexy_json(json, keyPath: "nestArray[0][0]")
 let test = String.sexy_json(json, keyPath: "nestArray[0][0].test")
 ```
 
-## Json->[Model]
+Json is converted into a model array object(json -> [model])
 ```swift
 let arrayModel = [Model].sexy_json(json)
 ```
 
-## [Model]->Array
+Model object array converted into the array([model] -> array)
 ```swift
 let array = arrayModel.sexy_array()
 ```
 
-## [Model]->Json
+Model object array converted into the json string([model] -> json)
 ```swift
 let arrayJson = arrayModel.sexy_json()
 ```
-## Model kvc
+SexyJson support model kvc
 ```swift
 let sub = Sub.sexy_json(json, keyPath: "sub")
 let subData = NSKeyedArchiver.archivedData(withRootObject: sub!)
