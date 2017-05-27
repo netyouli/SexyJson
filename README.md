@@ -11,8 +11,8 @@ SexyJson is Swift3.+ json parse open source library quickly and easily, perfect 
 
 Note
 ==============
-- The definition of model must implement SexyJson agreement
-- If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType agreement
+- The definition of model must implement SexyJson protocol
+- If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType protocol
 - To KVC model must inherit NSObject and NSCoding protocol implementation
 
 Require
