@@ -24,10 +24,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
 #else
     import AppKit
+#endif
+
+#if os(iOS) || os(tvOS) || os(watchOS)
+    public typealias SexyColor = UIColor
+#else
+    public typealias SexyColor = NSColor
 #endif
 
 //MARK: - Public protocol -
@@ -437,13 +443,7 @@ extension URL: SexyJsonBasicType {
     }
 }
 
-extension UIColor: SexyJsonObjectType {
-    
-    #if os(iOS) || os(tvOS) || os(watchOS)
-    public typealias ColorObject = UIColor
-    #else
-    public typealias ColorObject = NSColor
-    #endif
+extension SexyColor: SexyJsonObjectType {
     
     fileprivate func colorString() -> String {
         let comps = self.cgColor.components!
@@ -457,7 +457,7 @@ extension UIColor: SexyJsonObjectType {
         return hexString
     }
     
-    fileprivate static func getColor(hex: String) -> ColorObject? {
+    fileprivate static func getColor(hex: String) -> SexyColor? {
         var red: CGFloat   = 0.0
         var green: CGFloat = 0.0
         var blue: CGFloat  = 0.0
