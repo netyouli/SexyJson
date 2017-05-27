@@ -346,7 +346,7 @@ extension Dictionary: SexyJsonCollectionType {
 
 public extension RawRepresentable where Self: SexyJsonEnumType {
     public static func sexyTransform(_ value: Any?) -> Self? {
-        if let transforType = RawValue.self as? _SexyJsonBasicType.Type {
+        if let transforType = RawValue.self as? SexyJsonEnumType.Type {
             if let typedValue = transforType.sexyTransform(value) {
                 return Self(rawValue: typedValue as! RawValue)
             }
