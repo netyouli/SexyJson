@@ -85,7 +85,7 @@ struct Model :SexyJson {
 }
 
 ```
-**You don't need to manually create the SexyJson model class you can use open source tools with the help of** [WHC_DataModel.app](https://github.com/netyouli/WHC_DataModelFactory)
+**You don't need to manually create the SexyJson model class you can use open source tools with the help of** [WHC_DataModel.app](https://github.com/netyouli/WHC_DataModelFactory) automatically created SexyJson model
 
 Usage
 ==============
