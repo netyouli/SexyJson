@@ -83,8 +83,7 @@ fileprivate extension _SexyJsonBase {
                     return self._sexyJson(json_object, keyPath: keyPath)
                 case _ as Dictionary<String, Any> , _ as Array<Any>:
                     if let keyPathArray = keyPath?.components(separatedBy: ".") {
-                        var jsonObject = json
-                        jsonObject = _sexyKeyPathValue(keyPathArray, json: jsonObject)
+                        let jsonObject = _sexyKeyPathValue(keyPathArray, json: json)
                         switch jsonObject {
                         case _ as Dictionary<String, Any>:
                             print("SexyJson: Call api error,array json use api \(self).json(json)")
@@ -189,8 +188,7 @@ public extension SexyJson {
                     return self.sexy_json(json_object, keyPath: keyPath)
                 case _ as Dictionary<String, Any> , _ as Array<Any>:
                     if let keyPathArray = keyPath?.components(separatedBy: ".") {
-                        var jsonObject = json
-                        jsonObject = _sexyKeyPathValue(keyPathArray, json: jsonObject)
+                        let jsonObject = _sexyKeyPathValue(keyPathArray, json: json)
                         switch jsonObject {
                         case _ as Dictionary<String, Any>:
                             return self.sexy_json(jsonObject)
@@ -427,8 +425,7 @@ public extension Array {
                     return self.sexy_json(json_object, keyPath: keyPath)
                 case _ as Dictionary<String, Any>,  _ as Array<Any>:
                     if let keyPathArray = keyPath?.components(separatedBy: ".") {
-                        var jsonObject = json
-                        jsonObject = _sexyKeyPathValue(keyPathArray, json: jsonObject)
+                        let jsonObject = _sexyKeyPathValue(keyPathArray, json: json)
                         switch jsonObject {
                         case _ as Dictionary<String, Any>:
                             print("Call api error,object json use api Model.json(json)")
