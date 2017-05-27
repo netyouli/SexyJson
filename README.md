@@ -1,9 +1,9 @@
 # SexyJson
 
-![Build Status](https://api.travis-ci.org/netyouli/WHC_Layout.svg?branch=master)
-[![Pod Version](http://img.shields.io/cocoapods/v/WHC_Layout.svg?style=flat)](http://cocoadocs.org/docsets/WHC_Layout/)
-[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/SnapKit/SnapKit)
-[![Pod License](http://img.shields.io/cocoapods/l/WHC_Layout.svg?style=flat)](https://opensource.org/licenses/MIT)
+![Build Status](https://api.travis-ci.org/netyouli/SexyJson.svg?branch=master)
+[![Pod Version](http://img.shields.io/cocoapods/v/SexyJson.svg?style=flat)](http://cocoadocs.org/docsets/SexyJson/)
+[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/netyouli/)
+[![Pod License](http://img.shields.io/cocoapods/l/SexyJson.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 SexyJson is Swift3.+ json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
 
@@ -85,6 +85,7 @@ struct Model :SexyJson {
 }
 
 ```
+**You don't need to manually create the SexyJson model class you can use open source tools with the help of** [WHC_DataModel.app](https://github.com/netyouli/WHC_DataModelFactory)
 
 Usage
 ==============
