@@ -69,18 +69,18 @@ struct Model :SexyJson {
 
     /// Model mapping
     public mutating func sexyMap(_ map: [String : Any]) {
-        age            <<<        map["age"]
-        enmuStr        <<<        map["enmuStr"]
-        url            <<<        map["url"]
-        subArray       <<<        map["subArray"]
-        color          <<<        map["color"]
-        nestArray      <<<        map["nestArray"]
-        enmuInt        <<<        map["enmuInt"]
-        sub            <<<        map["sub"]
-        height         <<<        map["height"]
-        intArray       <<<        map["intArray"]
-        name           <<<        map["name"]
-        learn          <<<        map["learn"]
+        age      <<<   map["age"]
+        enmuStr  <<<   map["enmuStr"]
+        url      <<<   map["url"]
+        subArray <<<   map["subArray"]
+        color    <<<   map["color"]
+        nestArray <<<  map["nestArray"]
+        enmuInt   <<<  map["enmuInt"]
+        sub       <<<  map["sub"]
+        height    <<<  map["height"]
+        intArray  <<<  map["intArray"]
+        name      <<<  map["name"]
+        learn     <<<  map["learn"]
     }
 }
 
