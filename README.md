@@ -15,6 +15,8 @@ Note
 - If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType protocol
 - To KVC model must inherit NSObject and NSCoding protocol implementation
 
+**修复：修改sexyJson对象转换为json时nil字符串对象出现“null”字符串bug**
+
 Require
 ==============
 * iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
