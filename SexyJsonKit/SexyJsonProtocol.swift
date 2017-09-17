@@ -222,7 +222,7 @@ extension String: SexyJsonBasicType {
             }
             return num.stringValue
         default:
-            return value == nil ? "" : "\(value)"
+            return String(describing: value ?? "")
         }
     }
     

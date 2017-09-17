@@ -1,7 +1,8 @@
+`echo "4.0" > .swift-version`
 Pod::Spec.new do |s|
   s.name         = "SexyJson"
-  s.version      = "0.0.4"
-  s.summary      = "SexyJson is Swift3.+ json parse open quickly and easily, perfect supporting class and struct model, support the KVC model"
+  s.version      = "0.0.5"
+  s.summary      = "SexyJson is Swift4 json parse open quickly and easily, perfect supporting class and struct model, support the KVC model"
 
   s.homepage     = "https://github.com/netyouli/SexyJson"
 
@@ -12,7 +13,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/netyouli/SexyJson.git", :tag => "0.0.4"}
+  s.source       = { :git => "https://github.com/netyouli/SexyJson.git", :tag => "0.0.5"}
 
   s.source_files  = "SexyJsonKit/*.{swift}"
   s.ios.deployment_target = '8.0'
