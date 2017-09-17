@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         print("***************** Model *****************\n\n")
         print("json -> model 对象:")
         let model = ModelObject.sexy_json(jsonData)
-        print("model = \(model)")
+        print("model = \(String(describing: model))")
         print("\n---------------------------------------------------\n")
         
         print("model 对象 -> 字典:")
@@ -64,13 +64,11 @@ class ViewController: UIViewController {
         
         print("\n***************** Model Coding *****************\n\n")
         let modelCoding = Sub.sexy_json(jsonData, keyPath: "sub")
-        let modelCodingData = NSKeyedArchiver.archivedData(withRootObject: modelCoding!)
-        let modelUncoding = NSKeyedUnarchiver.unarchiveObject(with: modelCodingData) as? Sub
-        print("modelUncodingJson = \(modelUncoding!.sexy_json()!)")
-        let copyModel = modelUncoding?.copy() as? Sub
-        print("\n---------------------------------------------------\n")
-        print("copyModelJson = \(copyModel!.sexy_json()!)")
-        
+        if let modelCodingData = try? JSONEncoder().encode(modelCoding) {
+            if let modelUncoding = try? JSONDecoder().decode(Sub.self, from: modelCodingData) {
+                print("modelUncodingJson = \(modelUncoding.sexy_json()!)")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

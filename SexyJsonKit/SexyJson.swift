@@ -33,16 +33,16 @@ fileprivate extension _SexyJsonBase {
         var jsonObject = json
         keyPathArray.forEach({ (key) in
             if let range = key.range(of: "[") {
-                let realKey = key.substring(to: range.lowerBound)
+                let realKey = String(key[..<range.lowerBound])
                 var indexString = key
                 if !realKey.isEmpty {
                     jsonObject = (jsonObject as! Dictionary<String, Any>)[realKey]
-                    indexString = key.substring(from: range.lowerBound)
+                    indexString = String(key[range.lowerBound...])
                 }
                 var handleIndexString = indexString.replacingOccurrences(of: "]", with: ",")
                 handleIndexString = handleIndexString.replacingOccurrences(of: "[", with: "")
                 if handleIndexString.hasSuffix(",") {
-                    handleIndexString = handleIndexString.substring(to: handleIndexString.index(handleIndexString.endIndex, offsetBy: -1))
+                    handleIndexString = String(handleIndexString[..<handleIndexString.index(handleIndexString.endIndex, offsetBy: -1)])
                 }
                 if !handleIndexString.isEmpty {
                     handleIndexString.components(separatedBy: ",").forEach({ (i) in
@@ -252,7 +252,7 @@ public extension NSObject {
             return cachePropertyList as! [String]
         }
         var propertyList = [String]()
-        if let superClass = class_getSuperclass(self) {
+        if let superClass = class_getSuperclass(self.classForCoder()) {
             if superClass != NSObject.classForCoder() {
                 if let superList = (superClass as? NSObject.Type)?.getPropertyList() {
                     propertyList.append(contentsOf: superList)
@@ -260,12 +260,11 @@ public extension NSObject {
             }
         }
         var count:UInt32 =  0
-        if let properties = class_copyPropertyList(self, &count) {
+        if let properties = class_copyPropertyList(self.classForCoder(), &count) {
             for i in 0 ..< count {
-                if let name = property_getName(properties[Int(i)]) {
-                    if let nameStr = String(cString: name, encoding: .utf8) {
-                        propertyList.append(nameStr)
-                    }
+                let name = property_getName(properties[Int(i)])
+                if let nameStr = String(cString: name, encoding: .utf8) {
+                    propertyList.append(nameStr)
                 }
             }
         }

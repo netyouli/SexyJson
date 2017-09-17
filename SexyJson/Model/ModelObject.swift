@@ -62,22 +62,10 @@ struct NestArray :SexyJson {
     
 }
 
-class Sub :NSObject, SexyJson, NSCoding, NSCopying {
+class Sub: Codable, SexyJson {
     
-    required init(coder decoder: NSCoder) {
-        super.init()
-        self.sexy_decode(decoder)
+    required init() {
     }
-    
-    func encode(with aCoder: NSCoder) {
-        self.sexy_encode(aCoder)
-    }
-    
-    func copy(with zone: NSZone? = nil) -> Any {
-        return self.sexy_copy()
-    }
-    
-    required override init() {}
     
     var test1: String!
     var test2: String!

@@ -68,48 +68,57 @@ extension UITableView {
         }
     }
     
-    open override class func initialize() {
+    open static func initConfig() {
         struct WHC_TableViewLoad {
             static var token: Int = 0
         }
         if (WHC_TableViewLoad.token == 0) {
             WHC_TableViewLoad.token = 1;
-            let reloadData = class_getInstanceMethod(self, #selector(UITableView.reloadData))
-            let whc_ReloadData = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadData))
-            method_exchangeImplementations(reloadData, whc_ReloadData)
+            if let reloadData = class_getInstanceMethod(self, #selector(UITableView.reloadData)),
+                let whc_ReloadData = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadData)) {
+                method_exchangeImplementations(reloadData, whc_ReloadData)
+            }
             
-            let reloadDataRow = class_getInstanceMethod(self, #selector(UITableView.reloadRows(at:with:)))
-            let whc_ReloadDataRow = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadRowsAtIndexPaths(_:withRowAnimation:)))
-            method_exchangeImplementations(reloadDataRow, whc_ReloadDataRow)
+            if let reloadDataRow = class_getInstanceMethod(self, #selector(UITableView.reloadRows(at:with:))),
+                let whc_ReloadDataRow = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadRowsAtIndexPaths(_:withRowAnimation:))) {
+                method_exchangeImplementations(reloadDataRow, whc_ReloadDataRow)
+            }
             
-            let sectionReloadData = class_getInstanceMethod(self, #selector(UITableView.reloadSections(_:with:)))
-            let whc_SectionReloadData = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadSections(_:withRowAnimation:)))
-            method_exchangeImplementations(sectionReloadData, whc_SectionReloadData)
+            if let sectionReloadData = class_getInstanceMethod(self, #selector(UITableView.reloadSections(_:with:))),
+                let whc_SectionReloadData = class_getInstanceMethod(self, #selector(UITableView.whc_ReloadSections(_:withRowAnimation:))) {
+                method_exchangeImplementations(sectionReloadData, whc_SectionReloadData)
+            }
             
-            let deleteCell = class_getInstanceMethod(self, #selector(UITableView.deleteRows(at:with:)))
-            let whc_deleteCell = class_getInstanceMethod(self, #selector(UITableView.whc_DeleteRowsAtIndexPaths(_:withRowAnimation:)))
-            method_exchangeImplementations(deleteCell, whc_deleteCell)
+            if let deleteCell = class_getInstanceMethod(self, #selector(UITableView.deleteRows(at:with:))),
+                let whc_deleteCell = class_getInstanceMethod(self, #selector(UITableView.whc_DeleteRowsAtIndexPaths(_:withRowAnimation:))) {
+                method_exchangeImplementations(deleteCell, whc_deleteCell)
+            }
             
             
-            let deleteSection = class_getInstanceMethod(self, #selector(UITableView.deleteSections(_:with:)))
-            let whc_deleteSection = class_getInstanceMethod(self, #selector(UITableView.whc_DeleteSections(_:withRowAnimation:)))
-            method_exchangeImplementations(deleteSection, whc_deleteSection)
+            if let deleteSection = class_getInstanceMethod(self, #selector(UITableView.deleteSections(_:with:))),
+                let whc_deleteSection = class_getInstanceMethod(self, #selector(UITableView.whc_DeleteSections(_:withRowAnimation:))) {
+                method_exchangeImplementations(deleteSection, whc_deleteSection)
+            }
             
-            let moveSection = class_getInstanceMethod(self, #selector(UITableView.moveSection(_:toSection:)))
-            let whc_moveSection = class_getInstanceMethod(self, #selector(UITableView.whc_MoveSection(_:toSection:)))
-            method_exchangeImplementations(moveSection, whc_moveSection)
+            if let moveSection = class_getInstanceMethod(self, #selector(UITableView.moveSection(_:toSection:))),
+                let whc_moveSection = class_getInstanceMethod(self, #selector(UITableView.whc_MoveSection(_:toSection:))) {
+                method_exchangeImplementations(moveSection, whc_moveSection)
+            }
             
-            let moveRowAtIndexPath = class_getInstanceMethod(self, #selector(UITableView.moveRow(at:to:)))
-            let whc_moveRowAtIndexPath = class_getInstanceMethod(self, #selector(UITableView.whc_MoveRowAtIndexPath(_:toIndexPath:)))
-            method_exchangeImplementations(moveRowAtIndexPath, whc_moveRowAtIndexPath)
+            if let moveRowAtIndexPath = class_getInstanceMethod(self, #selector(UITableView.moveRow(at:to:))),
+                let whc_moveRowAtIndexPath = class_getInstanceMethod(self, #selector(UITableView.whc_MoveRowAtIndexPath(_:toIndexPath:))) {
+                method_exchangeImplementations(moveRowAtIndexPath, whc_moveRowAtIndexPath)
+            }
             
-            let insertSections = class_getInstanceMethod(self, #selector(UITableView.self.insertSections(_:with:)))
-            let whc_insertSections = class_getInstanceMethod(self, #selector(UITableView.whc_InsertSections(_:withRowAnimation:)))
-            method_exchangeImplementations(insertSections, whc_insertSections)
+            if let insertSections = class_getInstanceMethod(self, #selector(UITableView.self.insertSections(_:with:))),
+                let whc_insertSections = class_getInstanceMethod(self, #selector(UITableView.whc_InsertSections(_:withRowAnimation:))) {
+                method_exchangeImplementations(insertSections, whc_insertSections)
+            }
             
-            let insertRowsAtIndexPaths = class_getInstanceMethod(self, #selector(UITableView.insertRows(at:with:)))
-            let whc_insertRowsAtIndexPaths = class_getInstanceMethod(self, #selector(UITableView.whc_InsertRowsAtIndexPaths(_:withRowAnimation:)))
-            method_exchangeImplementations(insertRowsAtIndexPaths, whc_insertRowsAtIndexPaths)
+            if let insertRowsAtIndexPaths = class_getInstanceMethod(self, #selector(UITableView.insertRows(at:with:))),
+                let whc_insertRowsAtIndexPaths = class_getInstanceMethod(self, #selector(UITableView.whc_InsertRowsAtIndexPaths(_:withRowAnimation:))) {
+                method_exchangeImplementations(insertRowsAtIndexPaths, whc_insertRowsAtIndexPaths)
+            }
         }
     }
     

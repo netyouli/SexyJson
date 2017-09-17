@@ -150,7 +150,7 @@ extension SexyJsonFloatType {
     }
 }
 
-public protocol SexyJsonIntType:SexyJsonBasicType, Integer {
+public protocol SexyJsonIntType:SexyJsonBasicType, BinaryInteger {
     init?(_ text: String, radix: Int)
     init(_ number: NSNumber)
 }
