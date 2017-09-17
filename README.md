@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/netyouli/)
 [![Pod License](http://img.shields.io/cocoapods/l/SexyJson.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-SexyJson is Swift3.+ json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
+SexyJson is Swift4 json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
 
 **Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)  
 
@@ -14,8 +14,7 @@ Note
 - The definition of model must implement SexyJson protocol
 - If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType protocol
 - To KVC model must inherit NSObject and NSCoding protocol implementation
-
-**修复：修改sexyJson对象转换为json时nil字符串对象出现“null”字符串bug**
+- If you want to use swift3.2, please pod SexyJson '~> 0.0.4'
 
 Require
 ==============
