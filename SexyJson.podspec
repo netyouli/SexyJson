@@ -1,4 +1,5 @@
-`echo "4.0" > .swift-version`
+
+
 Pod::Spec.new do |s|
   s.name         = "SexyJson"
   s.version      = "0.0.5"

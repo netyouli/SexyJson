@@ -20,7 +20,7 @@ Require
 ==============
 * iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
 * Xcode 8.0 or later
-* Swift 3.0+
+* Swift 4.0
 
 Install
 ==============
