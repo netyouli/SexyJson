@@ -127,12 +127,14 @@ Model object array converted into the json string([model] -> json)
 ```swift
 let arrayJson = arrayModel.sexy_json()
 ```
-SexyJson support model kvc
+SexyJson support model kvc( Model class implement Codable protocol )
 ```swift
 let sub = Sub.sexy_json(json, keyPath: "sub")
-let subData = NSKeyedArchiver.archivedData(withRootObject: sub!)
-let subCoding = NSKeyedUnarchiver.unarchiveObject(with: subData) as? Sub
-let subPy = subCoding?.copy() as? Sub
+if let modelCodingData = try? JSONEncoder().encode(modelCoding) {
+    if let modelUncoding = try? JSONDecoder().decode(Sub.self, from: modelCodingData) {
+        print("modelUncodingJson = \(modelUncoding.sexy_json()!)")
+    }
+}
 ```
 Prompt
 ==============
