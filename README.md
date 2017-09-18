@@ -13,7 +13,6 @@ Note
 ==============
 - The definition of model must implement SexyJson protocol
 - If you have any enumeration type must be specified in the definition of model data type and implementation SexyJsonEnumType protocol
-- To KVC model must inherit NSObject and NSCoding protocol implementation
 - If you want to use swift3.2, please pod SexyJson '~> 0.0.4'
 
 Require
