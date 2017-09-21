@@ -77,8 +77,7 @@ public extension SexyJson {
             currentMirror = currentMirror.superclassMirror!
         }
         children.enumerated().forEach({ (index, element) in
-            let key = element.label ?? ""
-            if !key.isEmpty {
+            if let key = element.label, !key.isEmpty {
                 if let value = (element.value as? _SexyJsonBase)?.sexyToValue() {
                     jsonMap[key] = value
                 }

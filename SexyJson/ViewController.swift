@@ -60,8 +60,6 @@ class ViewController: UIViewController {
         print("arrayModelJson = \(arrayModelJson!)")
         
         
-        
-        
         print("\n***************** Model Coding *****************\n\n")
         let modelCoding = Sub.sexy_json(jsonData, keyPath: "sub")
         if let modelCodingData = try? JSONEncoder().encode(modelCoding) {
