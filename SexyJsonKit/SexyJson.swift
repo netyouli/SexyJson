@@ -451,6 +451,7 @@ public extension Array {
     
     /// [Model]数组-> json string
     ///
+    /// - Parameter format: 格式化json
     /// - Returns: json string
     public func sexy_json(format: Bool = false) -> String? {
         if let map = self.sexy_array() {

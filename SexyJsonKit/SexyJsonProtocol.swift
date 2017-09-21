@@ -221,7 +221,15 @@ extension String: SexyJsonBasicType {
             }
             return num.stringValue
         default:
-            return String(describing: value ?? "")
+            if let vl = value {
+                switch vl {
+                case nil, is NSNull:
+                    return ""
+                default:
+                    return "\(vl)"
+                }
+            }
+            return ""
         }
     }
     
