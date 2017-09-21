@@ -452,11 +452,11 @@ public extension Array {
     /// [Model]数组-> json string
     ///
     /// - Returns: json string
-    public func sexy_json() -> String? {
+    public func sexy_json(format: Bool = false) -> String? {
         if let map = self.sexy_array() {
             if JSONSerialization.isValidJSONObject(map) {
                 do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: map, options: [])
+                    let jsonData = try JSONSerialization.data(withJSONObject: map, options: format ? .prettyPrinted : [])
                     return String(data: jsonData, encoding: .utf8)
                 }catch let error {
                     print("SexyJson: error \(error)")

@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         print("\n---------------------------------------------------\n")
         
         print("[model] 对象 -> json字符串:")
-        let arrayModelJson = arrayModel?.sexy_json()
+        let arrayModelJson = arrayModel?.sexy_json(format: true)
         print("arrayModelJson = \(arrayModelJson!)")
         
         
