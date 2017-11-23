@@ -18,9 +18,8 @@ class ViewController: UIViewController {
         /// layout 
         sexyLab.whc_Left(0).whc_Top(0).whc_Right(0).whc_Bottom(0)
         
-        let jsonString = try! String(contentsOfFile: Bundle.main.path(forResource: "ModelObject", ofType: "json")!, encoding: .utf8)
+        let jsonString = try! String(contentsOfFile: Bundle.main.path(forResource: "Test", ofType: "json")!, encoding: .utf8)
         let jsonData = jsonString.data(using: .utf8)
-        
         
         print("***************** Model *****************\n\n")
         print("json -> model 对象:")
