@@ -207,6 +207,23 @@ extension UInt16: SexyJsonIntType {}
 extension UInt32: SexyJsonIntType {}
 extension UInt64: SexyJsonIntType {}
 
+extension NSNumber: SexyJsonObjectType {
+    public static func _sexyTransform(_ value: Any?) -> Any? {
+        switch value {
+        case let str as String:
+            return NSNumber(value: (str as NSString).floatValue)
+        case let num as NSNumber:
+            return num
+        default:
+            return NSNumber(value: 0)
+        }
+    }
+    
+    public func sexyToValue() -> Any? {
+        return self
+    }
+}
+
 extension String: SexyJsonBasicType {
     public static func sexyTransform(_ value: Any?) -> String? {
         switch value {
