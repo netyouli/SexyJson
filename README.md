@@ -9,7 +9,7 @@ SexyJson is Swift4 json parse open source library quickly and easily, perfect su
 
 **Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)
 
-bug修复：修复枚举类型转换失败
+update：Support for compatible swift4.2
 
 Note
 ==============
@@ -21,7 +21,7 @@ Require
 ==============
 * iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
 * Xcode 8.0 or later
-* Swift 4.0
+* Swift 4.2
 
 Install
 ==============
