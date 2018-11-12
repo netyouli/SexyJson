@@ -29,9 +29,12 @@ import Foundation
 infix operator <<<
 
 //MARK: - SexyJsonBasicType -
+
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: _SexyJsonBasicType>(left: inout T!, right: Any?) -> Void {
     left = T.sexyTransform(right)
 }
+#endif
 
 public func <<< <T: _SexyJsonBasicType>(left: inout T?, right: Any?) -> Void {
     left = T.sexyTransform(right)
@@ -44,9 +47,12 @@ public func <<< <T: _SexyJsonBasicType>(left: inout T, right: Any?) -> Void {
 }
 
 //MARK: - SexyJsonEnumType -
+
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJsonEnumType> (left: inout T!, right: Any?) -> Void {
     left = T.sexyTransform(right)
 }
+#endif
 
 public func <<< <T: SexyJsonEnumType>(left: inout T?, right: Any?) -> Void {
     left = T.sexyTransform(right)
@@ -60,9 +66,11 @@ public func <<< <T: SexyJsonEnumType>(left: inout T, right: Any?) -> Void {
 
 //MARK: - SexyJsonObjectType -
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJsonObjectType>(left: inout T!, right: Any?) -> Void {
     left = T._sexyTransform(right) as? T
 }
+#endif
 
 public func <<< <T: SexyJsonObjectType>(left: inout T?, right: Any?) -> Void {
     left = T._sexyTransform(right) as? T
@@ -84,12 +92,14 @@ public func <<< <T: SexyJson>(left: inout T?, right: Any?) -> Void {
     }
 }
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJson>(left: inout T!, right: Any?) -> Void {
     if let rightMap = right as? [String: Any] {
         left = T.init()
         left.sexyMap(rightMap)
     }
 }
+#endif
 
 public func <<< <T: SexyJson>(left: inout T, right: Any?) -> Void {
     if let rightMap = right as? [String: Any] {
@@ -105,12 +115,14 @@ public func <<< <T: _SexyJsonBasicType>(left: inout [T]?, right: Any?) -> Void {
     }
 }
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: _SexyJsonBasicType>(left: inout [T]!, right: Any?) -> Void {
     if right != nil {
         left = [T].init()
         left! <<< right
     }
 }
+#endif
 
 public func <<< <T: _SexyJsonBasicType>(left: inout [T], right: Any?) -> Void {
     if let rightMap = right as? [Any] {
@@ -121,12 +133,16 @@ public func <<< <T: _SexyJsonBasicType>(left: inout [T], right: Any?) -> Void {
 }
 
 //MARK: - [SexyJsonEnumType] -
+
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJsonEnumType> (left: inout [T]!, right: Any?) -> Void {
     if right != nil {
         left = [T].init()
         left! <<< right
     }
 }
+
+#endif
 
 public func <<< <T: SexyJsonEnumType>(left: inout [T]?, right: Any?) -> Void {
     if right != nil {
@@ -145,12 +161,15 @@ public func <<< <T: SexyJsonEnumType>(left: inout [T], right: Any?) -> Void {
 
 //MARK: - [SexyJsonObjectType] -
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJsonObjectType>(left: inout [T]!, right: Any?) -> Void {
     if right != nil {
         left = [T].init()
         left! <<< right
     }
 }
+
+#endif
 
 public func <<< <T: SexyJsonObjectType>(left: inout [T]?, right: Any?) -> Void {
     if right != nil {
@@ -178,12 +197,14 @@ public func <<< <T: SexyJson>(left: inout [T]?, right: Any?) -> Void {
     }
 }
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 public func <<< <T: SexyJson>(left: inout [T]!, right: Any?) -> Void {
     if right != nil {
         left = [T].init()
         left! <<< right
     }
 }
+#endif
 
 public func <<< <T: SexyJson>(left: inout [T], right: Any?) -> Void {
     if let rightMap = right as? [Any] {

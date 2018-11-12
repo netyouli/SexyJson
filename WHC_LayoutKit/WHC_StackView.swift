@@ -46,13 +46,7 @@ fileprivate struct WHC_StackViewAssociatedObjectKey {
     static var kFieldBottomPadding     = "fieldBottomPadding"
 }
 
-#if os(iOS) || os(tvOS)
-
-
-    
-#endif
-
-extension WHC_VIEW {
+extension WHC_CLASS_VIEW {
     /// 宽度权重
     public var whc_WidthWeight: CGFloat {
         set {
@@ -93,15 +87,15 @@ public enum WHC_LayoutOrientationOptions {
     case all
 }
 
-public class WHC_StackView: WHC_VIEW {
-    fileprivate class WHC_StackViewLineView: WHC_VIEW {}
-    fileprivate class WHC_VacntView: WHC_VIEW {}
+public class WHC_StackView: WHC_CLASS_VIEW {
+    fileprivate class WHC_StackViewLineView: WHC_CLASS_VIEW {}
+    fileprivate class WHC_VacntView: WHC_CLASS_VIEW {}
     
     fileprivate lazy var lastRowVacantCount = 0
     /// 自动高度
-    public lazy var autoHeight = false
+    public lazy var whc_AutoHeight = false
     /// 自动宽度
-    public lazy var autoWidth = false
+    public lazy var whc_AutoWidth = false
     
     /// StackView列数
     public lazy var whc_Column = 1
@@ -119,10 +113,7 @@ public class WHC_StackView: WHC_VIEW {
     public lazy var whc_Orientation = WHC_LayoutOrientationOptions.horizontal
     /// StackView子视图个数
     public var whc_SubViewCount: Int {
-        if self.whc_Orientation == .all {
-            return self.subviews.count - lastRowVacantCount
-        }
-        return self.subviews.count
+        return whc_SubViews.count
     }
     
     /// 子元素高宽比
@@ -140,35 +131,41 @@ public class WHC_StackView: WHC_VIEW {
     public lazy var whc_SegmentLinePadding: CGFloat = 0
     /// 设置分割线的颜色
     public lazy var whc_SegmentLineColor = WHC_COLOR(white: 0.9, alpha: 1.0)
-    
-    @discardableResult
-    public func whc_AutoWidth() -> WHC_VIEW {
-        autoWidth = true
-        return self.whc_WidthAuto()
-    }
-    
-    @discardableResult
-    public func whc_AutoHeight() -> WHC_VIEW {
-        autoHeight = true
-        return self.whc_HeightAuto()
+    /// 子视图集合
+    public var whc_SubViews: [WHC_CLASS_VIEW] {
+        var subViews = [WHC_CLASS_VIEW]()
+        self.subviews.forEach { (v) in
+            #if os(iOS) || os(tvOS)
+            if !(v is WHC_Line) && !(v is WHC_VacntView) {
+                subViews.append(v)
+            }
+            #else
+            if !(v is WHC_VacntView) {
+                subViews.append(v)
+            }
+            #endif
+        }
+        return subViews
     }
     
     public override func awakeFromNib() {
         super.awakeFromNib()
+        /*
         #if os(iOS) || os(tvOS)
             self.backgroundColor = WHC_COLOR.white
         #else
             self.makeBackingLayer().backgroundColor = WHC_COLOR.white.cgColor
-        #endif
+        #endif*/
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        /*
         #if os(iOS) || os(tvOS)
             self.backgroundColor = WHC_COLOR.white
         #else
             self.makeBackingLayer().backgroundColor = WHC_COLOR.white.cgColor
-        #endif
+        #endif*/
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -184,6 +181,7 @@ public class WHC_StackView: WHC_VIEW {
     public func whc_RemoveAllSubviews() {
         for subView in self.subviews {
             subView.removeFromSuperview()
+            subView.whc_ResetConstraints()
         }
     }
     
@@ -199,6 +197,7 @@ public class WHC_StackView: WHC_VIEW {
     
     fileprivate func removeAllSegmentLine() {
         for subView in self.subviews {
+            subView.whc_ResetConstraints()
             if subView is WHC_StackViewLineView {
                 subView.removeFromSuperview()
             }
@@ -207,15 +206,16 @@ public class WHC_StackView: WHC_VIEW {
     
     /// 布局引擎
     fileprivate func runStackLayoutEngine() {
+        removeAllSegmentLine()
         var currentSubViews = self.subviews
         var count = currentSubViews.count
         if count == 0 {return}
-        var toView: WHC_VIEW!
+        var toView: WHC_CLASS_VIEW!
         switch whc_Orientation {
         case .horizontal: /// 横向布局
             for i in 0 ..< count {
                 let view = currentSubViews[i]
-                let nextView: WHC_VIEW! = i < count - 1 ? currentSubViews[i + 1] : nil
+                let nextView: WHC_CLASS_VIEW! = i < count - 1 ? currentSubViews[i + 1] : nil
                 if i == 0 {
                     view.whc_Left(whc_Edge.left)
                 }else {
@@ -239,7 +239,7 @@ public class WHC_StackView: WHC_VIEW {
                         if whc_ElementWidthHeightRatio > 0 {
                             view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
                         }else {
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_WidthAuto()
                             }else {
                                 view.whc_WidthEqual(nextView, ratio: view.whc_WidthWeight / nextView.whc_WidthWeight)
@@ -252,7 +252,7 @@ public class WHC_StackView: WHC_VIEW {
                         if whc_ElementHeightWidthRatio > 0 {
                             view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
                         }else {
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_HeightAuto()
                             }else {
                                 view.whc_Bottom(whc_Edge.bottom)
@@ -262,17 +262,17 @@ public class WHC_StackView: WHC_VIEW {
                 }else {
                     if whc_SubViewWidth > 0 {
                         view.whc_Width(whc_SubViewWidth)
-                        if autoWidth {
+                        if whc_AutoWidth {
                             view.whc_Right(whc_Edge.right)
                         }
                     }else {
                         if whc_ElementWidthHeightRatio > 0 {
                             view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_Right(whc_Edge.right)
                             }
                         }else {
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_WidthAuto()
                             }
                             view.whc_Right(whc_Edge.right)
@@ -280,17 +280,17 @@ public class WHC_StackView: WHC_VIEW {
                     }
                     if whc_SubViewHeight > 0 {
                         view.whc_Height(whc_SubViewHeight)
-                        if autoHeight {
+                        if whc_AutoHeight {
                             view.whc_Bottom(whc_Edge.bottom)
                         }
                     }else {
                         if whc_ElementHeightWidthRatio > 0 {
                             view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_Bottom(whc_Edge.bottom)
                             }
                         }else {
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_HeightAuto()
                             }
                             view.whc_Bottom(whc_Edge.bottom)
@@ -305,7 +305,7 @@ public class WHC_StackView: WHC_VIEW {
         case .vertical: /// 垂直布局
             for i in 0 ..< count {
                 let view = currentSubViews[i];
-                let nextView: WHC_VIEW! = i < count - 1 ? currentSubViews[i + 1] : nil;
+                let nextView: WHC_CLASS_VIEW! = i < count - 1 ? currentSubViews[i + 1] : nil;
                 if i == 0 {
                     view.whc_Top(whc_Edge.top)
                 }else {
@@ -329,7 +329,7 @@ public class WHC_StackView: WHC_VIEW {
                         if whc_ElementWidthHeightRatio > 0 {
                             view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
                         }else {
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_WidthAuto()
                             }else {
                                 view.whc_Right(whc_Edge.right)
@@ -342,7 +342,7 @@ public class WHC_StackView: WHC_VIEW {
                         if whc_ElementHeightWidthRatio > 0 {
                             view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
                         }else {
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_HeightAuto()
                             }else {
                                 view.whc_HeightEqual(nextView, ratio: view.whc_HeightWeight / nextView.whc_HeightWeight)
@@ -352,17 +352,17 @@ public class WHC_StackView: WHC_VIEW {
                 }else {
                     if whc_SubViewWidth > 0 {
                         view.whc_Width(whc_SubViewWidth)
-                        if autoWidth {
+                        if whc_AutoWidth {
                             view.whc_Right(whc_Edge.right)
                         }
                     }else {
                         if whc_ElementWidthHeightRatio > 0 {
                             view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_Right(whc_Edge.right)
                             }
                         }else {
-                            if autoWidth {
+                            if whc_AutoWidth {
                                 view.whc_WidthAuto()
                             }
                             view.whc_Right(whc_Edge.right)
@@ -370,17 +370,17 @@ public class WHC_StackView: WHC_VIEW {
                     }
                     if whc_SubViewHeight > 0 {
                         view.whc_Height(whc_SubViewHeight)
-                        if autoHeight {
+                        if whc_AutoHeight {
                             view.whc_Bottom(whc_Edge.bottom)
                         }
                     }else {
                         if whc_ElementHeightWidthRatio > 0 {
                             view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_Bottom(whc_Edge.bottom)
                             }
                         }else {
-                            if autoHeight {
+                            if whc_AutoHeight {
                                 view.whc_HeightAuto()
                             }
                             view.whc_Bottom(whc_Edge.bottom)
@@ -394,6 +394,7 @@ public class WHC_StackView: WHC_VIEW {
             }
         case .all: // 横向垂直很混布局
             for view in self.subviews {
+                view.whc_ResetConstraints()
                 if view is WHC_VacntView {
                     view.removeFromSuperview()
                 }
@@ -416,12 +417,12 @@ public class WHC_StackView: WHC_VIEW {
                 currentSubViews = self.subviews
                 count = currentSubViews.count
             }
-            var frontRowView: WHC_VIEW!
-            var frontColumnView: WHC_VIEW!
+            var frontRowView: WHC_CLASS_VIEW!
+            var frontColumnView: WHC_CLASS_VIEW!
             
             var columnLineView: WHC_StackViewLineView!
             for row in 0 ..< rowCount {
-                var nextRowView: WHC_VIEW!
+                var nextRowView: WHC_CLASS_VIEW!
                 let rowView = currentSubViews[row * self.whc_Column]
                 let nextRow = (row + 1) * self.whc_Column
                 if nextRow < count {
@@ -439,7 +440,7 @@ public class WHC_StackView: WHC_VIEW {
                 for column in 0 ..< whc_Column {
                     index = row * self.whc_Column + column
                     let view  = currentSubViews[index]
-                    var nextColumnView: WHC_VIEW!
+                    var nextColumnView: WHC_CLASS_VIEW!
                     if column > 0 && whc_SegmentLineSize > 0.0 {
                         columnLineView = makeLine()
                         self.addSubview(columnLineView)
@@ -477,7 +478,7 @@ public class WHC_StackView: WHC_VIEW {
                             if whc_ElementHeightWidthRatio > 0 {
                                 view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
                             }else {
-                                if autoHeight {
+                                if whc_AutoHeight {
                                     view.whc_HeightAuto()
                                 }else {
                                     view.whc_HeightEqual(nextRowView ,
@@ -492,7 +493,7 @@ public class WHC_StackView: WHC_VIEW {
                             if whc_ElementHeightWidthRatio > 0 {
                                 view.whc_HeightWidthRatio(whc_ElementHeightWidthRatio)
                             }else {
-                                if autoHeight {
+                                if whc_AutoHeight {
                                     view.whc_HeightAuto()
                                 }else {
                                     view.whc_Bottom(whc_Edge.bottom)
@@ -507,7 +508,7 @@ public class WHC_StackView: WHC_VIEW {
                             if whc_ElementWidthHeightRatio > 0 {
                                 view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
                             }else {
-                                if autoWidth {
+                                if whc_AutoWidth {
                                     view.whc_WidthAuto()
                                 }else {
                                     view.whc_WidthEqual(nextColumnView ,
@@ -522,7 +523,7 @@ public class WHC_StackView: WHC_VIEW {
                             if whc_ElementWidthHeightRatio > 0 {
                                 view.whc_WidthHeightRatio(whc_ElementWidthHeightRatio)
                             }else {
-                                if autoWidth {
+                                if whc_AutoWidth {
                                     view.whc_WidthAuto()
                                 }else {
                                     view.whc_Right(whc_Edge.right)
@@ -537,16 +538,18 @@ public class WHC_StackView: WHC_VIEW {
                 }
                 frontRowView = rowView;
             }
-            if autoWidth {
+            if whc_AutoWidth {
+                let subCount = self.subviews.count
+                if subCount == 0 {return}
                 #if os(iOS) || os(tvOS)
                     self.layoutIfNeeded()
                 #else
                     self.makeBackingLayer().layoutIfNeeded()
                 #endif
                 var rowLastColumnViewMaxX: CGFloat = 0
-                var rowLastColumnViewMaxXView: WHC_VIEW!
-                for r in 1 ... rowCount {
-                    let index = r * whc_Column - 1
+                var rowLastColumnViewMaxXView: WHC_CLASS_VIEW!
+                for r in 0 ..< subCount {
+                    let index = r
                     let maxWidthView = subviews[index]
                     #if os(iOS) || os(tvOS)
                         maxWidthView.layoutIfNeeded()
@@ -561,16 +564,18 @@ public class WHC_StackView: WHC_VIEW {
                 rowLastColumnViewMaxXView.whc_Right(whc_Edge.right)
             }
             
-            if autoHeight {
+            if whc_AutoHeight {
+                let subCount = self.subviews.count
+                if subCount == 0 {return}
                 #if os(iOS) || os(tvOS)
                     self.layoutIfNeeded()
                 #else
                     self.makeBackingLayer().layoutIfNeeded()
                 #endif
                 var columnLastRowViewMaxY: CGFloat = 0
-                var columnLastRowViewMaxYView: WHC_VIEW!
-                for r in 1 ... rowCount {
-                    let index = r * whc_Column - 1
+                var columnLastRowViewMaxYView: WHC_CLASS_VIEW!
+                for r in 0 ..< subCount {
+                    let index = r
                     let maxHeightView = subviews[index]
                     #if os(iOS) || os(tvOS)
                         maxHeightView.layoutIfNeeded()

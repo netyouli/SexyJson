@@ -215,12 +215,13 @@ public extension SexyJson {
     
     /// model->json string
     ///
+    /// - Parameter format: 格式化json
     /// - Returns: json string
-    public func sexy_json() -> String? {
+    public func sexy_json(format: Bool = false) -> String? {
         if let map = self.sexy_dictionary() {
             if JSONSerialization.isValidJSONObject(map) {
                 do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: map, options: [])
+                    let jsonData = try JSONSerialization.data(withJSONObject: map, options: format ? .prettyPrinted : [])
                     return String(data: jsonData, encoding: .utf8)
                 }catch let error {
                     print("SexyJson: error \(error)")
@@ -330,12 +331,13 @@ public extension Dictionary {
     
     /// map->json string
     ///
+    /// - Parameter format: 格式化json
     /// - Returns: json string
-    public func sexy_json() -> String? {
+    public func sexy_json(format: Bool = false) -> String? {
         if let jsonMap = self.sexyToValue() {
             if JSONSerialization.isValidJSONObject(jsonMap) {
                 do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: jsonMap, options: [])
+                    let jsonData = try JSONSerialization.data(withJSONObject: jsonMap, options: format ? .prettyPrinted : [])
                     return String(data: jsonData, encoding: .utf8)
                 }catch let error {
                     print("SexyJson: error \(error)")

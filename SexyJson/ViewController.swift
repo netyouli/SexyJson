@@ -18,7 +18,69 @@ class ViewController: UIViewController {
         /// layout 
         sexyLab.whc_Left(0).whc_Top(0).whc_Right(0).whc_Bottom(0)
         
-        let jsonString = try! String(contentsOfFile: Bundle.main.path(forResource: "Test", ofType: "json")!, encoding: .utf8)
+        let json = """
+{
+    "queryHotelObj": {
+        "dataList": [
+            {
+                "name": "酒店",
+                "isDefault": true,
+                "hotelListFilterItem": {},
+                "dataId": 1,
+                "tagList": []
+            },
+            {
+                "name": "公寓",
+                "isDefault": true,
+                "hotelListFilterItem": {
+                    "hotelStyle": "80,81"
+                },
+                "dataId": 8,
+                "tagList": [
+                    {
+                        "type": 0,
+                        "name": "测试1",
+                        "targetUrl": "aaa"
+                    }
+                ]
+            },
+            {
+                "name": "时租",
+                "isDefault": true,
+                "hotelListFilterItem": {},
+                "dataId": 3,
+                "tagList": []
+            },
+            {
+                "name": "国际",
+                "isDefault": true,
+                "hotelListFilterItem": {},
+                "dataId": 9,
+                "tagList": []
+            },
+            {
+                "name": "精选",
+                "isDefault": true,
+                "hotelListFilterItem": {
+                    "hotelStyle": "8"
+                },
+                "dataId": 7,
+                "tagList": []
+            }
+        ]
+    },
+    "resultType": 0,
+    "message": ""
+}
+"""
+        
+        let test = BaseClass.sexy_json(json)
+        
+        if let testjson = test?.sexy_json(format: true) {
+            print("testJson = " + testjson)
+        }
+        
+        let jsonString = try! String(contentsOfFile: Bundle.main.path(forResource: "ModelObject", ofType: "json")!, encoding: .utf8)
         let jsonData = jsonString.data(using: .utf8)
         
         print("***************** Model *****************\n\n")

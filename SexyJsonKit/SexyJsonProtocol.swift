@@ -87,11 +87,13 @@ public extension SexyJson {
     }
 }
 
+#if !(swift(>=4.1.50) || (swift(>=3.4) && !swift(>=4.0)))
 extension ImplicitlyUnwrappedOptional: _SexyJsonBase {
     public func sexyToValue() -> Any? {
         return self == nil ? nil : (self! as? _SexyJsonBase)?.sexyToValue()
     }
 }
+#endif
 
 extension Optional: _SexyJsonBase {
 
@@ -241,12 +243,12 @@ extension String: SexyJsonBasicType {
             if let vl = value {
                 switch vl {
                 case nil, is NSNull:
-                    return ""
+                    return nil
                 default:
                     return "\(vl)"
                 }
             }
-            return ""
+            return nil
         }
     }
     
@@ -260,7 +262,7 @@ extension NSString: SexyJsonObjectType {
         if let str = String.sexyTransform(value) {
             return NSString(string: str)
         }
-        return ""
+        return nil
     }
     
     public func sexyToValue() -> Any? {

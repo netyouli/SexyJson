@@ -12,8 +12,11 @@
 		FE3A64AA1ED8067E0078D3ED /* WHC_AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */; };
 		FE3A64AB1ED8067E0078D3ED /* WHC_Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */; };
 		FE3A64AC1ED8067E0078D3ED /* WHC_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */; };
+		FE49C088207C9BE1009EF034 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C087207C9BE1009EF034 /* Test.swift */; };
 		FE6F0B041EC80E7200FCCFB6 /* SexyJsonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F0B031EC80E7200FCCFB6 /* SexyJsonProtocol.swift */; };
 		FE6F0B061EC8204C00FCCFB6 /* SexyJsonOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F0B051EC8204C00FCCFB6 /* SexyJsonOperation.swift */; };
+		FEAF1E3D2199321E00F5DA95 /* WHC_Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */; };
+		FEAF1E3E2199321E00F5DA95 /* WHC_LayerFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */; };
 		FEB8E54E1EBC2C39008045B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB8E54D1EBC2C39008045B9 /* AppDelegate.swift */; };
 		FEB8E5501EBC2C39008045B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB8E54F1EBC2C39008045B9 /* ViewController.swift */; };
 		FEB8E5531EBC2C39008045B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEB8E5511EBC2C39008045B9 /* Main.storyboard */; };
@@ -29,8 +32,11 @@
 		FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_AutoLayout.swift; sourceTree = "<group>"; };
 		FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_Frame.swift; sourceTree = "<group>"; };
 		FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_StackView.swift; sourceTree = "<group>"; };
+		FE49C087207C9BE1009EF034 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		FE6F0B031EC80E7200FCCFB6 /* SexyJsonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyJsonProtocol.swift; sourceTree = "<group>"; };
 		FE6F0B051EC8204C00FCCFB6 /* SexyJsonOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyJsonOperation.swift; sourceTree = "<group>"; };
+		FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_Util.swift; sourceTree = "<group>"; };
+		FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_LayerFrame.swift; sourceTree = "<group>"; };
 		FEB8E54A1EBC2C38008045B9 /* SexyJson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SexyJson.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEB8E54D1EBC2C39008045B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEB8E54F1EBC2C39008045B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,7 @@
 			children = (
 				FEC072E21FC6B276004207FB /* ModelObject.json */,
 				FE25EEB31ED42DCE00D9027F /* ModelObject.swift */,
+				FE49C087207C9BE1009EF034 /* Test.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -69,6 +76,8 @@
 				FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */,
 				FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */,
 				FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */,
+				FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */,
+				FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */,
 			);
 			path = WHC_LayoutKit;
 			sourceTree = "<group>";
@@ -190,12 +199,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEB8E5501EBC2C39008045B9 /* ViewController.swift in Sources */,
+				FEAF1E3E2199321E00F5DA95 /* WHC_LayerFrame.swift in Sources */,
 				FEB8E5611EBC2C97008045B9 /* SexyJson.swift in Sources */,
 				FE3A64AB1ED8067E0078D3ED /* WHC_Frame.swift in Sources */,
 				FE6F0B041EC80E7200FCCFB6 /* SexyJsonProtocol.swift in Sources */,
 				FE3A64AC1ED8067E0078D3ED /* WHC_StackView.swift in Sources */,
+				FE49C088207C9BE1009EF034 /* Test.swift in Sources */,
 				FE6F0B061EC8204C00FCCFB6 /* SexyJsonOperation.swift in Sources */,
 				FE25EEB41ED42DCE00D9027F /* ModelObject.swift in Sources */,
+				FEAF1E3D2199321E00F5DA95 /* WHC_Util.swift in Sources */,
 				FE3A64A91ED8067E0078D3ED /* WHC_AutoCellHeight.swift in Sources */,
 				FEB8E54E1EBC2C39008045B9 /* AppDelegate.swift in Sources */,
 				FE3A64AA1ED8067E0078D3ED /* WHC_AutoLayout.swift in Sources */,
@@ -337,7 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = WHC.SexyJson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -351,7 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = WHC.SexyJson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
