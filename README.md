@@ -5,11 +5,11 @@
 [![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/netyouli/)
 [![Pod License](http://img.shields.io/cocoapods/l/SexyJson.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-SexyJson is Swift4 json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
+SexyJson is Swift5+ json parse open source library quickly and easily, perfect supporting class and struct model, support the KVC model, fully oriented protocol architecture, support iOS and MAC OS X
 
 **Objective-c version** 👉 [WHC_Model](https://github.com/netyouli/WHC_Model)
 
-update：Support for compatible swift4.2
+update：Support for compatible swift5.+
 
 Note
 ==============
@@ -21,7 +21,7 @@ Require
 ==============
 * iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
 * Xcode 8.0 or later
-* Swift 4.2
+* Swift 5.0
 
 Install
 ==============
