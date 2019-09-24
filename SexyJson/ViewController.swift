@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         /// layout 
-//        sexyLab.whc_Left(0).whc_Top(0).whc_Right(0).whc_Bottom(0)
+        sexyLab.frame = UIScreen.main.bounds
         
         let json = """
 {
