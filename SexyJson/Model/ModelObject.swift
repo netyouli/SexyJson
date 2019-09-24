@@ -113,3 +113,16 @@ struct ModelObject :SexyJson {
     }
     
 }
+
+class OBject: NSObject, SexyJson {
+    required override init() {
+    }
+    
+    func sexyMap(_ map: [String : Any]) {
+        ks <<< map["ks"]
+    }
+    
+    var ks: String?
+    
+    
+}

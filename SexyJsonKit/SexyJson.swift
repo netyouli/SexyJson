@@ -27,9 +27,9 @@
 
 import Foundation
 
-fileprivate extension _SexyJsonBase {
+internal extension _SexyJsonBase {
     //// parser json keypath value
-    fileprivate static func _sexyKeyPathValue(_ keyPathArray: [String], json: Any?) -> Any? {
+    static func _sexyKeyPathValue(_ keyPathArray: [String], json: Any?) -> Any? {
         var jsonObject = json
         keyPathArray.forEach({ (key) in
             if let range = key.range(of: "[") {
@@ -70,7 +70,7 @@ fileprivate extension _SexyJsonBase {
     }
     
     /// parser json
-    fileprivate static func _sexyJson(_ json: Any?, keyPath: String?) -> Self? {
+    static func _sexyJson(_ json: Any?, keyPath: String?) -> Self? {
         if json != nil {
             if keyPath != nil && keyPath != "" {
                 var json_object: Any!
@@ -113,6 +113,19 @@ fileprivate extension _SexyJsonBase {
     }
 }
 
+extension NSObject {
+    public func sexy_copy() -> Self? {
+        if let proself = self as? SexyJson {
+            if let selftype = self.classForCoder as? SexyJson.Type {
+                return selftype.sexy_json(proself.sexyToValue()) as? Self
+            }
+        }else {
+            print("SexyJson: Call sexy_copy error, \(self) not implementation SexyJson")
+        }
+        return nil
+    }
+}
+
 public extension SexyJsonBasicType {
     
     /// 解析json
@@ -121,7 +134,7 @@ public extension SexyJsonBasicType {
     ///   - json: json数据(字符串、字典，data)
     ///   - keyPath: json key路径
     /// - Returns: model对象
-    public static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
+    static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
         return _sexyJson(json, keyPath: keyPath)
     }
 }
@@ -134,7 +147,7 @@ public extension SexyJsonObjectType {
     ///   - json: json数据(字符串、字典，data)
     ///   - keyPath: json key路径
     /// - Returns: model对象
-    public static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
+    static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
         return _sexyJson(json, keyPath: keyPath)
     }
 }
@@ -148,7 +161,7 @@ public extension SexyJson {
     ///
     /// - Parameter json: json数据(字符串、字典，data)
     /// - Returns: model对象
-    public static func sexy_json(_ json: Any?) -> Self? {
+    static func sexy_json(_ json: Any?) -> Self? {
         switch json {
         case let str as String:
             let json_data = str.data(using: .utf8)
@@ -175,7 +188,7 @@ public extension SexyJson {
     ///   - json: json数据(字符串、字典，data)
     ///   - keyPath: json key路径
     /// - Returns: model对象
-    public static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
+    static func sexy_json(_ json: Any?, keyPath: String?) -> Self? {
         if json != nil {
             if keyPath != nil && keyPath != "" {
                 var json_object: Any!
@@ -217,7 +230,7 @@ public extension SexyJson {
     ///
     /// - Parameter format: 格式化json
     /// - Returns: json string
-    public func sexy_json(format: Bool = false) -> String? {
+    func sexy_json(format: Bool = false) -> String? {
         if let map = self.sexy_dictionary() {
             if JSONSerialization.isValidJSONObject(map) {
                 do {
@@ -237,93 +250,8 @@ public extension SexyJson {
     /// model->json 字典
     ///
     /// - Returns: json 字典
-    public func sexy_dictionary() -> [String: Any]? {
+    func sexy_dictionary() -> [String: Any]? {
         return self.sexyToValue() as? [String : Any]
-    }
-}
-
-
-public extension NSObject {
-    private struct SexyJsonConst {
-        static var cachePropertyList = "SexyJsonConst###cachePropertyList"
-    }
-    
-    private class func getPropertyList() -> [String] {
-        if let cachePropertyList = objc_getAssociatedObject(self, &SexyJsonConst.cachePropertyList) {
-            return cachePropertyList as! [String]
-        }
-        var propertyList = [String]()
-        if let superClass = class_getSuperclass(self.classForCoder()) {
-            if superClass != NSObject.classForCoder() {
-                if let superList = (superClass as? NSObject.Type)?.getPropertyList() {
-                    propertyList.append(contentsOf: superList)
-                }
-            }
-        }
-        var count:UInt32 =  0
-        if let properties = class_copyPropertyList(self.classForCoder(), &count) {
-            for i in 0 ..< count {
-                let name = property_getName(properties[Int(i)])
-                if let nameStr = String(cString: name, encoding: .utf8) {
-                    propertyList.append(nameStr)
-                }
-            }
-        }
-        objc_setAssociatedObject(self, &SexyJsonConst.cachePropertyList, propertyList, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return propertyList
-    }
-    
-    //MARK: - model -> coding -
-    
-    
-    /// model kvc编码
-    ///
-    /// - Parameter aCoder: 编码对象
-    public func sexy_encode(_ aCoder: NSCoder) {
-        let selfType = type(of: self)
-        selfType.getPropertyList().forEach { (name) in
-            if let value = self.value(forKey: name) {
-                aCoder.encode(value, forKey: name)
-            }
-        }
-    }
-    
-    
-    /// model kvc解码
-    ///
-    /// - Parameter decode: 解码对象
-    public func sexy_decode(_ decode: NSCoder) {
-        let selfType = type(of: self)
-        selfType.getPropertyList().forEach { (name) in
-            if let value = decode.decodeObject(forKey: name) {
-                self.setValue(value, forKey: name)
-            }
-        }
-    }
-    
-    //MARK: - model -> copying -
-    
-    
-    /// model copy
-    ///
-    /// - Returns: copy model 对象
-    public func sexy_copy() -> Self {
-        let selfType = type(of: self)
-        let copyModel = selfType.init()
-        selfType.getPropertyList().forEach { (name) in
-            if let value = self.value(forKey: name) {
-                let valueType = type(of: value)
-                switch valueType {
-                case is _SexyJsonBasicType.Type:
-                    copyModel.setValue(value, forKey: name)
-                default:
-                    if let copyValue = (value as? NSObject)?.copy() {
-                        copyModel.setValue(copyValue, forKey: name)
-                    }
-                }
-            }
-        }
-        return copyModel
     }
 }
 
@@ -333,7 +261,7 @@ public extension Dictionary {
     ///
     /// - Parameter format: 格式化json
     /// - Returns: json string
-    public func sexy_json(format: Bool = false) -> String? {
+    func sexy_json(format: Bool = false) -> String? {
         if let jsonMap = self.sexyToValue() {
             if JSONSerialization.isValidJSONObject(jsonMap) {
                 do {
@@ -360,7 +288,7 @@ public extension Array {
     ///
     /// - Parameter json: json数据(字符串、字典，data)
     /// - Returns: 模型数组[Model]
-    public static func sexy_json(_ json: Any?) -> [Element]? {
+    static func sexy_json(_ json: Any?) -> [Element]? {
         switch json {
         case let jsonList as [Any]:
             var modelList = [Element]()
@@ -413,7 +341,7 @@ public extension Array {
     ///   - json: json数据(字符串、字典，data)
     ///   - keyPath: json keyPath路径
     /// - Returns: 模型数组[Model]
-    public static func sexy_json(_ json: Any?, keyPath: String?) -> [Element]? {
+    static func sexy_json(_ json: Any?, keyPath: String?) -> [Element]? {
         if json != nil {
             if keyPath != nil && keyPath != "" {
                 var json_object: Any!
@@ -455,7 +383,7 @@ public extension Array {
     ///
     /// - Parameter format: 格式化json
     /// - Returns: json string
-    public func sexy_json(format: Bool = false) -> String? {
+    func sexy_json(format: Bool = false) -> String? {
         if let map = self.sexy_array() {
             if JSONSerialization.isValidJSONObject(map) {
                 do {
@@ -475,7 +403,7 @@ public extension Array {
     /// [Model]数组-> [json]
     ///
     /// - Returns: [json]
-    public func sexy_array() -> [Any]? {
+    func sexy_array() -> [Any]? {
         return self.sexyToValue() as? [Any]
     }
 }

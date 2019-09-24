@@ -8,15 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FE25EEB41ED42DCE00D9027F /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25EEB31ED42DCE00D9027F /* ModelObject.swift */; };
-		FE3A64A91ED8067E0078D3ED /* WHC_AutoCellHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A51ED8067D0078D3ED /* WHC_AutoCellHeight.swift */; };
-		FE3A64AA1ED8067E0078D3ED /* WHC_AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */; };
-		FE3A64AB1ED8067E0078D3ED /* WHC_Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */; };
-		FE3A64AC1ED8067E0078D3ED /* WHC_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */; };
 		FE49C088207C9BE1009EF034 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C087207C9BE1009EF034 /* Test.swift */; };
 		FE6F0B041EC80E7200FCCFB6 /* SexyJsonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F0B031EC80E7200FCCFB6 /* SexyJsonProtocol.swift */; };
 		FE6F0B061EC8204C00FCCFB6 /* SexyJsonOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F0B051EC8204C00FCCFB6 /* SexyJsonOperation.swift */; };
-		FEAF1E3D2199321E00F5DA95 /* WHC_Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */; };
-		FEAF1E3E2199321E00F5DA95 /* WHC_LayerFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */; };
 		FEB8E54E1EBC2C39008045B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB8E54D1EBC2C39008045B9 /* AppDelegate.swift */; };
 		FEB8E5501EBC2C39008045B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB8E54F1EBC2C39008045B9 /* ViewController.swift */; };
 		FEB8E5531EBC2C39008045B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEB8E5511EBC2C39008045B9 /* Main.storyboard */; };
@@ -28,15 +22,9 @@
 
 /* Begin PBXFileReference section */
 		FE25EEB31ED42DCE00D9027F /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
-		FE3A64A51ED8067D0078D3ED /* WHC_AutoCellHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_AutoCellHeight.swift; sourceTree = "<group>"; };
-		FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_AutoLayout.swift; sourceTree = "<group>"; };
-		FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_Frame.swift; sourceTree = "<group>"; };
-		FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_StackView.swift; sourceTree = "<group>"; };
 		FE49C087207C9BE1009EF034 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		FE6F0B031EC80E7200FCCFB6 /* SexyJsonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyJsonProtocol.swift; sourceTree = "<group>"; };
 		FE6F0B051EC8204C00FCCFB6 /* SexyJsonOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyJsonOperation.swift; sourceTree = "<group>"; };
-		FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_Util.swift; sourceTree = "<group>"; };
-		FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHC_LayerFrame.swift; sourceTree = "<group>"; };
 		FEB8E54A1EBC2C38008045B9 /* SexyJson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SexyJson.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEB8E54D1EBC2C39008045B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEB8E54F1EBC2C39008045B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,23 +57,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		FE3A64A41ED8067D0078D3ED /* WHC_LayoutKit */ = {
-			isa = PBXGroup;
-			children = (
-				FE3A64A51ED8067D0078D3ED /* WHC_AutoCellHeight.swift */,
-				FE3A64A61ED8067D0078D3ED /* WHC_AutoLayout.swift */,
-				FE3A64A71ED8067D0078D3ED /* WHC_Frame.swift */,
-				FE3A64A81ED8067D0078D3ED /* WHC_StackView.swift */,
-				FEAF1E3C2199321E00F5DA95 /* WHC_LayerFrame.swift */,
-				FEAF1E3B2199321E00F5DA95 /* WHC_Util.swift */,
-			);
-			path = WHC_LayoutKit;
-			sourceTree = "<group>";
-		};
 		FEB8E5411EBC2C38008045B9 = {
 			isa = PBXGroup;
 			children = (
-				FE3A64A41ED8067D0078D3ED /* WHC_LayoutKit */,
 				FEB8E55F1EBC2C7B008045B9 /* SexyJsonKit */,
 				FEB8E54C1EBC2C39008045B9 /* SexyJson */,
 				FEB8E54B1EBC2C38008045B9 /* Products */,
@@ -166,6 +140,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -199,18 +174,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEB8E5501EBC2C39008045B9 /* ViewController.swift in Sources */,
-				FEAF1E3E2199321E00F5DA95 /* WHC_LayerFrame.swift in Sources */,
 				FEB8E5611EBC2C97008045B9 /* SexyJson.swift in Sources */,
-				FE3A64AB1ED8067E0078D3ED /* WHC_Frame.swift in Sources */,
 				FE6F0B041EC80E7200FCCFB6 /* SexyJsonProtocol.swift in Sources */,
-				FE3A64AC1ED8067E0078D3ED /* WHC_StackView.swift in Sources */,
 				FE49C088207C9BE1009EF034 /* Test.swift in Sources */,
 				FE6F0B061EC8204C00FCCFB6 /* SexyJsonOperation.swift in Sources */,
 				FE25EEB41ED42DCE00D9027F /* ModelObject.swift in Sources */,
-				FEAF1E3D2199321E00F5DA95 /* WHC_Util.swift in Sources */,
-				FE3A64A91ED8067E0078D3ED /* WHC_AutoCellHeight.swift in Sources */,
 				FEB8E54E1EBC2C39008045B9 /* AppDelegate.swift in Sources */,
-				FE3A64AA1ED8067E0078D3ED /* WHC_AutoLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +311,7 @@
 		FEB8E55D1EBC2C39008045B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7F5YZXGNJ3;
 				INFOPLIST_FILE = SexyJson/Info.plist;
@@ -349,13 +319,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = WHC.SexyJson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		FEB8E55E1EBC2C39008045B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7F5YZXGNJ3;
 				INFOPLIST_FILE = SexyJson/Info.plist;
@@ -363,7 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = WHC.SexyJson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

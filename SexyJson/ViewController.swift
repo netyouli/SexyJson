@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         /// layout 
-        sexyLab.whc_Left(0).whc_Top(0).whc_Right(0).whc_Bottom(0)
+//        sexyLab.whc_Left(0).whc_Top(0).whc_Right(0).whc_Bottom(0)
         
         let json = """
 {
@@ -75,6 +75,11 @@ class ViewController: UIViewController {
 """
         
         let test = BaseClass.sexy_json(json)
+    
+        let obj = OBject()
+        obj.ks = "09"
+        
+        let jk = obj.sexy_copy()
         
         if let testjson = test?.sexy_json(format: true) {
             print("testJson = " + testjson)

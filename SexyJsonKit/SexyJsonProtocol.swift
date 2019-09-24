@@ -64,7 +64,7 @@ public protocol SexyJson: _SexyJsonInitBase {
 
 
 public extension SexyJson {
-    public func sexyToValue() -> Any? {
+    func sexyToValue() -> Any? {
         let mirror = Mirror(reflecting: self)
         var jsonMap = [String: Any]()
         var children = [(label: String?, value: Any)]()
@@ -371,7 +371,7 @@ extension Dictionary: SexyJsonCollectionType {
 }
 
 public extension RawRepresentable where Self: SexyJsonEnumType {
-    public static func sexyTransform(_ value: Any?) -> Self? {
+    static func sexyTransform(_ value: Any?) -> Self? {
         if let transforType = RawValue.self as? SexyJsonBasicType.Type {
             if let typedValue = transforType.sexyTransform(value) {
                 return Self(rawValue: typedValue as! RawValue)
@@ -380,7 +380,7 @@ public extension RawRepresentable where Self: SexyJsonEnumType {
         return nil
     }
     
-    public func sexyToValue() -> Any? {
+    func sexyToValue() -> Any? {
         return self.rawValue
     }
 }
