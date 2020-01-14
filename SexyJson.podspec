@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SexyJson"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "SexyJson is Swift5+ json parse open quickly and easily, perfect supporting class and struct model, support the KVC model"
 
   s.homepage     = "https://github.com/netyouli/SexyJson"
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = "SexyJsonKit/*.{swift}"
   s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.11'
+  s.osx.deployment_target = '10.10'
   s.tvos.deployment_target = '9.0'
   s.requires_arc = true
 
