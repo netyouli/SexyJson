@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SexyJson"
-  s.version      = "1.2.1"
+  s.version      = "1.2.2"
   s.summary      = "SexyJson is Swift5+ json parse open quickly and easily, perfect supporting class and struct model, support the KVC model"
 
   s.homepage     = "https://github.com/netyouli/SexyJson"
