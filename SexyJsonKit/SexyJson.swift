@@ -119,8 +119,8 @@ extension NSObject {
     }
     
     private class func getPropertyList() -> [String] {
-        if let cachePropertyList = objc_getAssociatedObject(self, &SexyJsonConst.cachePropertyList) {
-            return cachePropertyList as! [String]
+        if let cachePropertyList = objc_getAssociatedObject(self, &SexyJsonConst.cachePropertyList) as? [String], !cachePropertyList.isEmpty {
+            return cachePropertyList
         }
         var propertyList = [String]()
         if let superClass = class_getSuperclass(self.classForCoder()) {
